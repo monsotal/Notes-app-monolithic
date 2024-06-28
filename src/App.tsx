@@ -52,8 +52,6 @@ const App = () => {
 
   const handleAddNote = (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("title: ", title);
-    console.log("content: ", content);
 
 
   const newNote: Note = {
@@ -87,7 +85,10 @@ const App = () => {
       content: content,
     };
   
-    const updatedNotesList = notes.map((note) => (note.id === selectedNote.id ? updatedNote : note));
+    const updatedNotesList = notes.map((note) => 
+      (note.id === selectedNote.id 
+        ? updatedNote 
+        : note));
   
     setNotes(updatedNotesList);
     setTitle("");
@@ -95,6 +96,11 @@ const App = () => {
     setSelectedNote(null);
   };
 
+  const handleCancel = () => {
+    setTitle("");
+    setContent("");
+    setSelectedNote(null)
+  }
 
   return (
     <div className="app-container">
@@ -114,6 +120,8 @@ const App = () => {
         ></textarea>
         <button type="submit">Add Note</button>
       </form>
+
+      
       <div className="notes-grid">
         {notes.map((note) => (
           <div key={note.id} className="note-item" onClick={() => handleNoteClick(note)}>
