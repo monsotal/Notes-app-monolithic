@@ -104,7 +104,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <form className="note-form" onSubmit={handleAddNote}>
+      <form className="note-form" onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
         <input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -118,10 +118,15 @@ const App = () => {
           rows={10}
           required
         ></textarea>
-        <button type="submit">Add Note</button>
-      </form>
-
-      
+        {selectedNote ? (
+          <div className="edit-buttons">
+          <button type="submit">Save</button>
+          <button onClick={handleCancel}>Cancel</button>
+        </div>
+        ) : (
+          <button type="submit">Add Note</button>
+        )}
+        </form>
       <div className="notes-grid">
         {notes.map((note) => (
           <div key={note.id} className="note-item" onClick={() => handleNoteClick(note)}>
