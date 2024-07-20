@@ -21,6 +21,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   grid-auto-rows: minmax(250px, auto);
   gap: 20px;
+  padding-top: 80px;
 }
 
 .note-item {
@@ -51,10 +52,28 @@ h2 {
   margin: 0;
 }
 
+.headline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+
 .note-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 80px;
 }
 
 textarea,

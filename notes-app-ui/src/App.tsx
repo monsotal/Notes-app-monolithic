@@ -135,7 +135,7 @@ const App = () => {
 
       const updatedNotes = notes.filter((note) => note.id !== noteId);
       setNotes(updatedNotes);
-      
+
     } catch (error) {
       console.log(error);
     }
@@ -154,6 +154,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <h1 className="headline">Good evening!</h1>
       <form className="note-form" onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
         <input
           value={title}
