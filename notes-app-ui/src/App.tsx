@@ -76,6 +76,8 @@ const App = () => {
     setContent(note.content);
   }
 
+
+
   const handleUpdateNote = async (
     event: React.FormEvent
   ) => {
@@ -118,19 +120,36 @@ const App = () => {
 
   };
 
+
+
+  const deleteNote = async (event: React.MouseEvent, noteId: number) => {
+    event.stopPropagation();
+  
+    try {
+      await fetch(
+        `http://localhost:5000/api/notes/${noteId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const updatedNotes = notes.filter((note) => note.id !== noteId);
+      setNotes(updatedNotes);
+      
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+
   const handleCancel = () => {
     setTitle("");
     setContent("");
     setSelectedNote(null)
   }
 
-  const deleteNote = (event: React.MouseEvent, noteId: number) => {
-    event.stopPropagation();
-  
-    const updatedNotes = notes.filter((note) => note.id !== noteId);
-  
-    setNotes(updatedNotes);
-  };
+
 
 
   return (
