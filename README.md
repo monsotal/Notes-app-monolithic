@@ -40,7 +40,7 @@ Plus, there's validation on both the UI and the backend
 - run the server: `npm start`
 
 ### start the front-end development server:
-- `cd notes-app-u`i
+- `cd notes-app-ui`
 - Install dependencies: `npm install`
 - run the server: `npm start`
 
