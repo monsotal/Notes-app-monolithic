@@ -28,7 +28,7 @@ Plus, there's validation on both the UI and the backend
 ### Environment Variables
 - Create a `.env` file in the `notes-app-server` directory
 - Add necessary variables 
-     `DATABASE_URL=postgresql://`User`:`password`@`ip`:5432/notes_db?schema=public`
+     `DATABASE_URL=postgresql://<user>:<password>@<ip>:5432/notes_db?schema=public`
 
 ### Database Setup
 - Ensure PostgreSQL is installed running and available
