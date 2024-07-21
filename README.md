@@ -16,19 +16,34 @@ Plus, there's validation on both the UI and the backend
 - Database: PostgreSQL
 
 ## Prerequisites
-Node.js, npm, 
-PostgreSQL server
+- Node.js, npm, 
+- PostgreSQL server
 
-## Usage
+## Installation & Usage 
+### Set up SSH for GitHub (if not already done)
+- Check for existing SSH keys , then OR place the keys in ~/.ssh dir
+- Test the SSH connection : `ssh -T git@github.com`
+- Clone the repo : `git clone git@github.com:monsotal/notes-app.git`
+
+### Environment Variables
+- Create a `.env` file in the `notes-app-server` directory
+- Add necessary variables 
+     `DATABASE_URL=postgresql://postgres:'password'@ip:5432/notes_db?schema=public`
+
+### Database Setup
+- Ensure PostgreSQL is installed running and available
+
+
 ### Run the backend server 
-cd notes-app-server
-Install dependencies: npm install
-run the server: npm start
+- `cd notes-app-server`
+- Install dependencies: `npm install`
+- run the server: `npm start`
 
 ### start the front-end development server:
-cd notes-app-ui
-Install dependencies: npm install
-run the server: npm start
+- `cd notes-app-u`i
+- Install dependencies: `npm install`
+- run the server: `npm start`
+
 
 ## Project Structure
 The application is structured with separate frontend (notes-app-ui) and backend (notes-app-server) directories,
