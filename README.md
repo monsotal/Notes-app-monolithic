@@ -23,7 +23,7 @@ Plus, there's validation on both the UI and the backend
 ### Set up SSH for GitHub (if not already done)
 - Check for existing SSH keys , then place the keys in ~/.ssh dir
 - Test the SSH connection : `ssh -T git@github.com`
-- Clone the repo : `git clone git@github.com:monsotal/notes-app.git`
+- Clone the repo : `git clone git@github.com:monsotal/Notes-app-monolithic.git`
 
 ### Environment Variables
 - Create a `.env` file in the `notes-app-server` directory
