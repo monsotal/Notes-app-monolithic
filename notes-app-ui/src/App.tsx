@@ -24,7 +24,7 @@ const App = () => {
     const fetchNotes = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/notes"
+          "/api/notes"
         );
 
         const notes: Note[] =
@@ -44,7 +44,7 @@ const App = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        "http://localhost:5000/api/notes",
+        "/api/notes",
         {
           method: "POST",
           headers: {
@@ -85,7 +85,7 @@ const App = () => {
     if(selectedNote){
       try {
         const response = await fetch(
-          `http://localhost:5000/api/notes/${selectedNote.id}`,
+          `/api/notes/${selectedNote.id}`,
           {
             method: "PUT",
             headers: {
@@ -127,7 +127,7 @@ const App = () => {
   
     try {
       await fetch(
-        `http://localhost:5000/api/notes/${noteId}`,
+        `/api/notes/${noteId}`,
         {
           method: "DELETE",
         }
