@@ -153,6 +153,7 @@ const MainApp = () => {
 
 
   return (
+    <>
     <div className="app-container">
       <h1 className="headline">Good evening!</h1>
       <form className="note-form" onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
@@ -190,6 +191,10 @@ const MainApp = () => {
         ))}
       </div>
     </div>
+    <div>
+        <hr className="custom-hr" />
+      </div>
+    </>
   );
 };
 
