@@ -15,15 +15,18 @@ Plus, there's validation on both the UI and the backend
 - Backend: Node.js with Express
 - Database: PostgreSQL
 
-## Prerequisites
-- Node.js, npm, 
-- PostgreSQL server
 
-## Installation & Usage 
+
+
+## How to prepare your local environment for debugging / development
 ### Set up SSH for GitHub (if not already done)
 - Check for existing SSH keys , then place the keys in ~/.ssh dir
 - Test the SSH connection : `ssh -T git@github.com`
 - Clone the repo : `git clone git@github.com:monsotal/Notes-app-monolithic.git`
+
+### Prerequisites
+- Node.js, npm, 
+- PostgreSQL server
 
 ### Environment Variables
 - Create a `.env` file in the `notes-app-server` directory
@@ -43,9 +46,13 @@ Plus, there's validation on both the UI and the backend
 - run the server: `npm start`
 
 ### start the front-end development server:
+
 - `cd notes-app-ui`
 - Install dependencies: `npm install`
 - run the server: `npm start`
+- In MainApp.tsx , replace API endpoints to absolute paths
+  This is because React App and Node.js server runs on different ports, therefore instead of using '/api/notes'you may use 'http://localhost:5000/api/notes' 
+  (Unlike In production with Nginx, where the backend API is configured in the Nginx config, you can use relative paths like /api/notes directly in your code. Nginx handles the routing and API requests based on its configuration, so absolute URLs are not needed.
 
 
 ## Project Structure
