@@ -14,6 +14,7 @@ import React, { useState } from "react";
 
 			if (username === "admin" && password === "uniquePassword") {
 			localStorage.setItem("isAuthenticated", "true");
+			console.log("User authenticated:", localStorage.getItem("isAuthenticated"));
 			navigate("/mainapp");
 			} else {
 			alert("Invalid username or password");
