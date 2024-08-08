@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import "./MainApp.css";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -12,12 +13,11 @@ const MainApp = () => {
   }
 
   const [notes, setNotes] = useState<Note[]>([]);
-
   const [title, setTitle] = useState("");
-
   const [content, setContent] =useState("");
-
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -150,6 +150,9 @@ const MainApp = () => {
   }
 
 
+  const handleStocksClick = () => {
+    navigate('/stocks');
+  }
 
 
   return (
@@ -193,7 +196,10 @@ const MainApp = () => {
     </div>
     <div>
         <hr className="custom-hr" />
-      </div>
+    </div>
+    <footer className="bottom-nav">
+    <button className="nav-item" onClick={handleStocksClick}>Stocks</button>
+    </footer>
     </>
   );
 };
