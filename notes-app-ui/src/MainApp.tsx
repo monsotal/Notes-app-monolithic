@@ -155,9 +155,17 @@ const MainApp = () => {
   }
 
 
+  const handleLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    localStorage.setItem("isAuthenticated", "false");
+    navigate('/login');
+  };
+
+  
   return (
     <>
     <div className="app-container">
+    <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
       <h1 className="headline">Good evening!</h1>
       <form className="note-form" onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
         <input

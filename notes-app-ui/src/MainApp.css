@@ -16,6 +16,59 @@ body {
 }
 
 
+.headline {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 25%;
+  z-index: 1000;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  padding: 15px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.logout-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+  
+  background: linear-gradient(135deg, rgb(106, 175, 198), #243b39); /* Modern gradient background */
+  color: #fff;
+  font-size: 1rem; /* Consistent font size */
+  font-weight: 500; /* Medium weight for better readability */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth interaction effects */
+}
+
+.logout-button:hover {
+  transform: translateY(-2px); /* Slight upward movement on hover */
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.logout-button:active {
+  transform: translateY(0); /* Neutral position on active click */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow on active click */
+}
+
+.logout-button:focus {
+  outline: none; /* Remove default outline */
+  box-shadow: 0 0 0 3px rgba(255, 126, 95, 0.4); /* Focus ring with a softer color */
+}
+
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -52,21 +105,6 @@ h2 {
   margin: 0;
 }
 
-.headline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background-color: #f9f9f9;
-  font-family: Arial, sans-serif;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333;
-  text-align: center;
-  padding: 15px 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
 
 
 .note-form {
