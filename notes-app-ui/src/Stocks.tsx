@@ -18,7 +18,8 @@ const Stocks: React.FC = () => {
             ["S&P 500", "FOREXCOM:SPXUSD|12M"],
             ["Nasdaq 100", "FOREXCOM:NSXUSD|12M"],
             ["Gold", "COMEX:GC1!|12M"],
-            ["Crude Oil", "NYMEX:CL1!|12M"]
+            ["Crude Oil", "NYMEX:CL1!|12M"],
+            ["GOOGL|1D"]
           ],
           "chartOnly": false,
           "width": "100%",
