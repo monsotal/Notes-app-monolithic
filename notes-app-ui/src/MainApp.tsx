@@ -18,6 +18,20 @@ const MainApp = () => {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
 
   const navigate = useNavigate();
+  const [greeting,setGreeting] = useState('Good day');
+
+  useEffect(() => {
+    const currentHour = new Date().getHours();
+    if (currentHour < 12){
+      setGreeting('Good morning');
+    }
+    else if (currentHour<18){
+      setGreeting('Good afternoon');
+    }
+    else{
+      setGreeting('Good night');
+    }
+  }, []);
 
 
   useEffect(() => {
@@ -166,7 +180,7 @@ const MainApp = () => {
     <>
     <div className="app-container">
     <button className="logout-button" onClick={handleLogoutClick}>Logout</button>
-      <h1 className="headline">Good evening!</h1>
+      <h1 className="headline">{greeting}</h1>
       <form className="note-form" onSubmit={(event) => (selectedNote ? handleUpdateNote(event) : handleAddNote(event))}>
         <input
           value={title}
