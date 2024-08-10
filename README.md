@@ -36,9 +36,10 @@ Plus, there's validation on both the UI and the backend
 ### Database Setup
 - Ensure PostgreSQL is installed running and available
 - Synchronize your Prisma schema with the database schema:
-     `cd notes-app-server`
 
-      `npx prisma db push`
+`cd notes-app-server`
+
+`npx prisma db push`
 
 
 ### Run the backend server 
