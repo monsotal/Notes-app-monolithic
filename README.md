@@ -59,4 +59,4 @@ Plus, there's validation on both the UI and the backend
 
 ## Project Structure
 The application is structured with separate frontend (notes-app-ui) and backend (notes-app-server) directories,
- allowing for independent development and easy deployment.
+ allowing for independent development and easy deployment...
