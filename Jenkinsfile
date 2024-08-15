@@ -1,10 +1,24 @@
 pipeline {
     agent any
 
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '40'))
+    }
+
+    triggers {
+        //check for code changes every day at 20:00
+        cron('0 20 * * *')
+    }
+
     stages {
         stage('Checkout Code') {
             steps {
                 echo 'Checkout Code..'
+                git(
+                    url: 'git@github.com:monsotal/Notes-app-monolithic.git',
+                    branch: 'main',
+                    credentialsId: 'any'
+                )
             }
         }
         stage('Install dependencies') {
