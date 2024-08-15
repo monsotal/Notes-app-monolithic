@@ -13,12 +13,8 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                     checkout([$class: 'GitSCM', branches: [[name: 'main']],
-                     doGenerateSubmoduleConfigurations: false,
-                     extensions: [[$class: 'CloneOption', timeout: 20, noTags: false, shallow: false]],
-                     userRemoteConfigs: [[url: git@github.com:monsotal/Notes-app-monolithic.git, credentialsId: 'any']]
-                    ])
-            }
+                    git branch: 'main', credentialsId: 'e7843ead-0fba-47ed-b0df-64b028be7a89', url: 'git@github.com:monsotal/Notes-app-monolithic.git'
+                 }
         }
         stage('Install dependencies') {
             steps {
