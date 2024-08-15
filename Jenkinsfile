@@ -14,7 +14,6 @@ pipeline {
         stage('Checkout Code') {
             steps {
                     checkout([$class: 'GitSCM',
-                    branches: [[name: 'main']],
                     userRemoteConfigs: [[url: 'git@github.com:monsotal/Notes-app-monolithic.git', credentialsId: 'any']]
                 ])
             }
