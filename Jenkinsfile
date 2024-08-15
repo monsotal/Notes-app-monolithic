@@ -14,6 +14,10 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: 'main', credentialsId: 'e7843ead-0fba-47ed-b0df-64b028be7a89', url: 'git@github.com:monsotal/Notes-app-monolithic.git'
+                script {
+                    env.GIT_TRACE = 'true'
+                     env.GIT_CURL_VERBOSE = 'true'
+                        }
             }
         }
         stage('Install dependencies') {
