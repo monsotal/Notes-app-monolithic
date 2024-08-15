@@ -16,7 +16,7 @@ pipeline {
                      checkout([$class: 'GitSCM', branches: [[name: 'main']],
                      doGenerateSubmoduleConfigurations: false,
                      extensions: [[$class: 'CloneOption', timeout: 20, noTags: false, shallow: false]],
-                     userRemoteConfigs: [[url: 'git@github.com:monsotal/Notes-app-monolithic.git', credentialsId: 'any']]
+                     userRemoteConfigs: [[url: git@github.com:monsotal/Notes-app-monolithic.git, credentialsId: 'any']]
                     ])
             }
         }
