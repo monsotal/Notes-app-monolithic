@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 echo 'Checkout Code..'
-                git branch:'main', credentialsId: 'any', url: 'git@github.com:monsotal/Notes-app-monolithic.git'
+                git branch: 'main', credentialsId: 'any', url: 'git@github.com:monsotal/Notes-app-monolithic.git'
             }
         }
         stage('Install dependencies') {
