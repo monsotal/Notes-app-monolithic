@@ -18,7 +18,9 @@ pipeline {
                  }
         }
         stage('Clean workspace'){
-            deleteDir()
+            steps {
+                    deleteDir()
+            }
         }
         stage('Install dependencies') {
             steps {
