@@ -19,12 +19,33 @@ pipeline {
         }
         stage('Install dependencies') {
             steps {
-                echo 'Install dependencies..'
+                sh '''
+                    cd notes-app-ui
+                    npm install
+                    cd ..
+                    cd notes-app-server
+                    npm install
+                '''
+
+                echo 'Create a .env file with your PostgreSQL connection details:'
+                sh '''
+                echo 'DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public' > .env
+                sh '''
+
+                echo 'Pushing the database schema to the DB'
+                sh '''
+                sudo npx prisma db push
+                sh '''
             }
+                
         }
         stage('Build Frontend') {
             steps {
-                echo 'Deploying....'
+                sh '''
+                    cd ~
+                    cd notes-app-ui
+                    sudo npm run build --verbose
+                '''
             }
         }
         stage('Build Docker Image') {
@@ -36,16 +57,16 @@ pipeline {
             steps {
                 echo 'Building..'
             }
-    }
+        }
          stage('Deploy to Server') {
             steps {
                 echo 'Deploy to Server'
             }
-    }
+        }
         stage('Clean Up') {
             steps {
                 echo 'Clean Up'
             }
+        }
     }
-}
 }
