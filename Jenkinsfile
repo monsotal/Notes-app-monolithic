@@ -55,8 +55,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 sh '''
-                    cd ~
-                    cd notes-app-ui
+                    cd ${WORKDIR}/notes-app-ui
                     sudo npm run build --verbose
                 '''
             }
