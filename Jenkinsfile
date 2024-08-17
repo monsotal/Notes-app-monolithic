@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
+    }
+
     options {
         buildDiscarder(logRotator(numToKeepStr: '40'))
     }
@@ -25,15 +29,17 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh '''
+                    cd ${env.WORKDIR}
                     cd notes-app-ui
                     npm install
-                    cd ..
+                    cd ${env.WORKDIR}
                     cd notes-app-server
                     npm install
                 '''
 
                 echo 'Create a .env file with your PostgreSQL connection details:'
                 sh '''
+                cd ${env.WORKDIR}
                 echo DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public > .env
                 sh '''
 
