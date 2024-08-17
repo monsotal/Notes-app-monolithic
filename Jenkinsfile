@@ -29,22 +29,24 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 sh '''
-                    cd ${env.WORKDIR}
-                    cd notes-app-ui
+                    cd ${env.WORKDIR}/notes-app-ui
                     npm install
-                    cd ${env.WORKDIR}
-                    cd notes-app-server
+                    '''
+
+                sh '''
+                    cd ${env.WORKDIR}/notes-app-server
                     npm install
                 '''
 
                 echo 'Create a .env file with your PostgreSQL connection details:'
                 sh '''
-                cd ${env.WORKDIR}
+                cd ${env.WORKDIR}/notes-app-server
                 echo DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public > .env
                 sh '''
 
                 echo 'Pushing the database schema to the DB'
                 sh '''
+                cd ${env.WORKDIR}/notes-app-server
                 sudo npx prisma db push
                 sh '''
             }
