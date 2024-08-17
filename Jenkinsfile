@@ -17,6 +17,9 @@ pipeline {
 
                  }
         }
+        stage('Clean workspace'){
+            deleteDir()
+        }
         stage('Install dependencies') {
             steps {
                 sh '''
@@ -29,7 +32,7 @@ pipeline {
 
                 echo 'Create a .env file with your PostgreSQL connection details:'
                 sh '''
-                echo 'DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public' > .env
+                echo DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public > .env
                 sh '''
 
                 echo 'Pushing the database schema to the DB'
