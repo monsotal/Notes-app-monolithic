@@ -11,16 +11,16 @@ pipeline {
     }
 
     stages {
+        stage('Clean workspace'){
+            steps {
+                    deleteDir()
+            }
+        }
         stage('Checkout Code') {
             steps {
             git url: 'git@github.com:monsotal/Notes-app-monolithic.git', branch: 'main', credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
 
                  }
-        }
-        stage('Clean workspace'){
-            steps {
-                    deleteDir()
-            }
         }
         stage('Install dependencies') {
             steps {
