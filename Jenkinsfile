@@ -18,7 +18,7 @@ pipeline {
                 branches: [[name: 'main']],
                 doGenerateSubmoduleConfigurations: false,
                 extensions: [],
-                userRemoteConfigs: [[url: 'git@github.com:monsotal/Notes-app-monolithic.git', credentialsId: 'e7843ead-0fba-47ed-b0df-64b028be7a89']]
+                userRemoteConfigs: [[url: 'git@github.com:monsotal/Notes-app-monolithic.git', credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080']]
 ])
                  }
         }
