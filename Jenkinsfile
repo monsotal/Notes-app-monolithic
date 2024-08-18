@@ -1,7 +1,10 @@
 pipeline {
     agent any
 
-
+    parameters{
+        string(name:'DB_IP', description: 'Postgres public ip', defaultValue: '')
+    }
+    
     environment {
         WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
 
