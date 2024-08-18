@@ -1,10 +1,17 @@
 pipeline {
     agent any
 
-    environment {
-        WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
+
+     parameters{
+        string(name:'DB_IP', description: 'Postgres public ip', defaultValue: '')
     }
 
+    environment {
+        WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
+        DATABASE_IP = "${params.DB_IP}"
+    }
+
+   
     options {
         buildDiscarder(logRotator(numToKeepStr: '40'))
     }
@@ -41,7 +48,7 @@ pipeline {
                 echo 'Create a .env file with your PostgreSQL connection details:'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
-                    echo DATABASE_URL=postgresql://postgres:uniquePassword@3.64.179.211:5432/notes_db?schema=public > .env
+                    echo "DATABASE_URL=postgresql://postgres:uniquePassword@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
 
                 echo 'Pushing the database schema to the DB'
