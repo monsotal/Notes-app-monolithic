@@ -20,7 +20,10 @@ pipeline {
     stages {
         stage('Clean workspace'){
             steps {
-                    deleteDir()
+                    sh '''
+                    echo "Manually cleaning workspace..."
+                    rm -rf ${WORKSPACE}/*
+                    '''
             }
         }
         stage('Checkout Code') {
