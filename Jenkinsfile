@@ -53,7 +53,7 @@ pipeline {
                 echo 'Pushing the database schema to the DB'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
-                    sudo npx prisma db push
+                    npx prisma db push
                     '''
             }
                 
