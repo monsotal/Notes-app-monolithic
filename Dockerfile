@@ -5,10 +5,10 @@ FROM ubuntu:latest
 	
     #Install dependencies
 	RUN RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y nginx && \
-    apt-get install -y nodejs && \
-    apt-get install -y npm
+     apt-get upgrade -y && \
+     apt-get install -y nginx && \
+     apt-get install -y nodejs && \
+     apt-get install -y npm
 
 	EXPOSE 80
 
