@@ -4,7 +4,7 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 	
     #Install dependencies
-	RUN RUN apt-get update && \
+	RUN apt-get update && \
      apt-get upgrade -y && \
      apt-get install -y nginx && \
      apt-get install -y nodejs && \
