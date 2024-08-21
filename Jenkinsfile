@@ -68,7 +68,9 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                echo 'Build Docker Image..'
+                sh '''
+                docker build -t monsotal/notes-app-monolithic:0.0.1 {WORKDIR}
+                   '''
             }
         }
         stage('Push Docker Image') {
