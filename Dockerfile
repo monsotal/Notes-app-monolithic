@@ -4,10 +4,7 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 	
     #Install dependencies
-	RUN apt-get update && apt-get upgrade -y
-	RUN apt-get install nginx -y
-    RUN apt-get install nodejs -y && apt-get install npm -y
-	
+	RUN apt-get update && apt-get upgrade -y \ apt-get install nginx -y \  apt-get install nodejs -y && apt-get install npm -y
 	EXPOSE 80
 
     # Set up your application
