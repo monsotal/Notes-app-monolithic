@@ -4,7 +4,7 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 
 
-    ENV PROJECTDIR = "/home/ubuntu/Notes-app-monolithic"
+    ENV PROJECTDIR ="/home/ubuntu/Notes-app-monolithic"
 
 
     # Set up your application
