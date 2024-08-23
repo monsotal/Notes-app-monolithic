@@ -16,7 +16,7 @@ FROM ubuntu:latest
      apt-get install -y npm
 
     #Copying project directory from Jenkins host to the docker image
-    COPY . {WORKDIR}
+    COPY . ${WORKDIR}
 
 	EXPOSE 80
 
