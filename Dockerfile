@@ -4,11 +4,11 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 
 
-    ENV HOMEDIR = "/home/ubuntu/Notes-app-monolithic"
+    ENV PROJECTDIR = "/home/ubuntu/Notes-app-monolithic"
 
 
     # Set up your application
-    WORKDIR ${HOMEDIR}
+    WORKDIR ${PROJECTDIR}
 	
     #Install dependencies
 	RUN apt-get update && \
@@ -18,7 +18,7 @@ FROM ubuntu:latest
      apt-get install -y npm
 
     #Copying project directory from Jenkins host to the docker image
-    COPY . ${HOMEDIR}
+    COPY . ${PROJECTDIR}
 
 	EXPOSE 80
 
