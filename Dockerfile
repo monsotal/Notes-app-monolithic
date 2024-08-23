@@ -4,6 +4,8 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 
 
+    ENV HOMEDIR = "/home/ubuntu"
+
 
     # Set up your application
     WORKDIR /home/ubuntu/
@@ -16,7 +18,7 @@ FROM ubuntu:latest
      apt-get install -y npm
 
     #Copying project directory from Jenkins host to the docker image
-    COPY . ${WORKDIR}
+    COPY . ${HOMEDIR}
 
 	EXPOSE 80
 
