@@ -4,11 +4,11 @@ FROM ubuntu:latest
 	LABEL maintainer="monsotal"
 
 
-    ENV HOMEDIR = "/home/ubuntu"
+    ENV HOMEDIR = "/home/ubuntu/Notes-app-monolithic"
 
 
     # Set up your application
-    WORKDIR /home/ubuntu/
+    WORKDIR ${HOMEDIR}
 	
     #Install dependencies
 	RUN apt-get update && \
