@@ -85,7 +85,9 @@ pipeline {
         }
         stage('Clean Up') {
             steps {
-                echo 'Clean Up'
+                sh '''
+                docker builder prune
+                '''
             }
         }
     }
