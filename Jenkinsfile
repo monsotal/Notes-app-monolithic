@@ -69,7 +69,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t monsotal/notes-app-monolithic:0.0.2 ${WORKDIR}
+                docker build -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
                    '''
             }
         }
