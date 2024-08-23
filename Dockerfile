@@ -2,19 +2,22 @@ FROM ubuntu:latest
 	
 	LABEL version="0.0.1"
 	LABEL maintainer="monsotal"
+
+    # Set up your application
+    WORKDIR /home/ubuntu/
 	
     #Install dependencies
 	RUN apt-get update && \
      apt-get upgrade -y && \
      apt-get install -y nginx && \
      apt-get install -y nodejs && \
-     apt-get install -y npm && \
-     apt-get clean
+     apt-get install -y npm
+
+
+    COPY /var/lib/jenkins/workspace/Notes-app-monolithic-pipeline/ /home/ubuntu/
 
 	EXPOSE 80
 
-    # Set up your application
-    WORKDIR /var/lib/jenkins/workspace/Notes-app-monolithic-pipeline
 
     # Copy your custom Nginx configuration if needed
 
