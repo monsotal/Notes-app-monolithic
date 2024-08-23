@@ -86,7 +86,7 @@ pipeline {
         stage('Clean Up') {
             steps {
                 sh '''
-                docker builder prune
+                docker builder prune -f
                 '''
             }
         }
