@@ -69,18 +69,18 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                docker build -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
+                docker build -t monsotal/notes-app-monolithic:0.0.2 ${WORKDIR}
                    '''
             }
         }
         stage('Push Docker Image') {
             steps {
-                echo 'Building..'
+                echo 'Pushing the image to Docker hub repository..'
             }
         }
          stage('Deploy to Server') {
             steps {
-                echo 'Deploy to Server'
+                echo 'Pulling the image and run the container'
             }
         }
         stage('Clean Up') {
