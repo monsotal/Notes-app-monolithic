@@ -3,6 +3,8 @@ FROM ubuntu:latest
 	LABEL version="0.0.1"
 	LABEL maintainer="monsotal"
 
+
+
     # Set up your application
     WORKDIR /home/ubuntu/
 	
@@ -13,8 +15,8 @@ FROM ubuntu:latest
      apt-get install -y nodejs && \
      apt-get install -y npm
 
-
-    COPY /var/lib/jenkins/workspace/Notes-app-monolithic-pipeline/ /home/ubuntu/
+    #Copying project directory from Jenkins host to the docker image
+    COPY . {WORKDIR}
 
 	EXPOSE 80
 
