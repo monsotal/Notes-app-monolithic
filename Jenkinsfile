@@ -39,6 +39,7 @@ pipeline {
                     cd ${WORKDIR}/notes-app-server
                     echo "DATABASE_URL=postgresql://postgres:uniquePassword@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
+                  }
         }
         stage('Build Docker Image') {
             steps {
