@@ -38,8 +38,8 @@ FROM ubuntu:latest
         npm run build --verbose
 
     #Start the backend server with PM2
-  #  RUN cd ${PROJECTDIR}/notes-app-server && \
-   # pm2 start npm -- start
+    RUN cd ${PROJECTDIR}/notes-app-server && \
+    npm start
 
 
 	EXPOSE 80
