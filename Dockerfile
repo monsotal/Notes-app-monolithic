@@ -38,8 +38,8 @@ FROM ubuntu:latest
         npm run build --verbose
 
     #Start the backend server with PM2
-    RUN cd ${PROJECTDIR}/notes-app-server && \
-    npm start
+    #RUN cd ${PROJECTDIR}/notes-app-server && \
+    #npm start
 
 
 	EXPOSE 80
@@ -48,4 +48,4 @@ FROM ubuntu:latest
     # Copy your custom Nginx configuration if needed
 
     # Start NGINX
-    CMD ["nginx","-g", "daemon off;"]
+    CMD ["nginx","-g","daemon off"]
