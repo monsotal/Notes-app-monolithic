@@ -8,7 +8,7 @@ FROM ubuntu:latest
     ENV PROJECTDIR="/home/ubuntu/Notes-app-monolithic"
 
 
-    # Set up home directory
+    # Set up your application
     WORKDIR ${HOMEDIR}
 	
     #Install dependencies
@@ -18,23 +18,8 @@ FROM ubuntu:latest
      apt-get install -y nodejs && \
      apt-get install -y npm
 
-    #Copying project directory from Jenkins host to the container file system
+    #Copying project directory from Jenkins host to the docker image
     COPY . ${PROJECTDIR}
-
-
-    #Install Frontend & Backend Dependencies
-    RUN cd ${PROJECTDIR}/notes-app-ui && \
-        npm install && \
-        cd ${PROJECTDIR}/notes-app-server && \
-        npm install
-
-    #Pushing the database schema to the DB
-    RUN cd ${PROJECTDIR}/notes-app-server && \
-        npx prisma db push
-
-    #Build Frontend codebase
-    RUN cd ${PROJECTDIR}/notes-app-ui && \
-        npm run build --verbose
 
 	EXPOSE 80
 

@@ -32,13 +32,39 @@ pipeline {
 
                  }
         }
-        stage('Create .env file with Postgres connection details') {
+        stage('Install dependencies') {
             steps {
-                echo 'Create a .env file with PostgreSQL connection details:'
+                sh '''
+                    cd ${WORKDIR}/notes-app-ui
+                    npm install
+                    '''
+
+                sh '''
+                    cd ${WORKDIR}/notes-app-server
+                    npm install
+                    '''
+
+                echo 'Create a .env file with your PostgreSQL connection details:'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
                     echo "DATABASE_URL=postgresql://postgres:uniquePassword@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
+
+                echo 'Pushing the database schema to the DB'
+                sh '''
+                    cd ${WORKDIR}/notes-app-server
+                    npx prisma db push
+                    '''
+            }
+                
+        }
+        stage('Build Frontend') {
+            steps {
+                sh '''
+                    cd ${WORKDIR}/notes-app-ui
+                    npm run build --verbose
+                '''
+            }
         }
         stage('Build Docker Image') {
             steps {
