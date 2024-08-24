@@ -16,7 +16,8 @@ FROM ubuntu:latest
      apt-get upgrade -y && \
      apt-get install -y nginx && \
      apt-get install -y nodejs && \
-     apt-get install -y npm
+     apt-get install -y npm && \
+     npm install -g pm2
 
     #Copying project directory from Jenkins host to the container file system
     COPY . ${PROJECTDIR}
@@ -36,6 +37,11 @@ FROM ubuntu:latest
     RUN cd ${PROJECTDIR}/notes-app-ui && \
         npm run build --verbose
 
+    #Start the backend server with PM2
+    RUN cd ${PROJECTDIR}/notes-app-server && \
+    pm2 start npm -- start
+
+    
 	EXPOSE 80
 
 
