@@ -23,7 +23,7 @@ FROM ubuntu:latest
     #and Copying the start script to WORKDIR
 
     COPY . ${PROJECTDIR}
-    #COPY start.sh ${HOMEDIR}
+    COPY start.sh ${HOMEDIR}
 
 
     #Install Frontend & Backend Dependencies
@@ -41,8 +41,7 @@ FROM ubuntu:latest
         npm run build --verbose
 
     # Give execute permission to start script
-    #RUN cd ${PROJECTDIR} && \
-    #chmod + start.sh
+    RUN chmod +x ${HOMEDIR}/start.sh
 
 	EXPOSE 80
 
