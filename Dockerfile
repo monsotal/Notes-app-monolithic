@@ -19,7 +19,8 @@ FROM ubuntu:latest
      apt-get install -y npm && \
      npm install -g pm2
 
-    #Copying project directory from Jenkins host to the container file system
+    #Copying the project directory from Jenkins host to the container file system
+
     COPY . ${PROJECTDIR}
 
 
@@ -37,15 +38,13 @@ FROM ubuntu:latest
     RUN cd ${PROJECTDIR}/notes-app-ui && \
         npm run build --verbose
 
-    #Start the backend server with PM2
-    #RUN cd ${PROJECTDIR}/notes-app-server && \
-    #npm start
-
 
 	EXPOSE 80
 
 
     # Copy your custom Nginx configuration if needed
 
-    # Start NGINX
-    #CMD ["nginx","-g","daemon off"]
+
+    
+    # Starts the node backend & Nginx by Executing start.sh script
+    CMD ["./start.sh"]
