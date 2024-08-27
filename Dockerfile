@@ -6,6 +6,7 @@ FROM ubuntu:latest
 
     ENV HOMEDIR="/home/ubuntu"
     ENV PROJECTDIR="/home/ubuntu/Notes-app-monolithic"
+    ENV NGINX_CONFIGURATION="/resources/Nginx_configuration/notes-app"
 
 
     # Set up home directory
@@ -46,8 +47,8 @@ FROM ubuntu:latest
 	EXPOSE 80
 
 
-    # Copy your custom Nginx configuration if needed
-
+    # Copy the custom Nginx configuration to the Nginx dir
+    COPY ${NGINX_CONFIGURATION} /etc/nginx/sites-available/
 
 
     # Starts the node backend & Nginx by Executing start.sh script
