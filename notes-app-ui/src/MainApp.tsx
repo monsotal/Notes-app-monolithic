@@ -29,7 +29,7 @@ const MainApp = () => {
       setGreeting('Good afternoon');
     }
     else{
-      setGreeting('Good night');
+      setGreeting('Good evening');
     }
   }, []);
 

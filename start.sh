@@ -11,5 +11,11 @@ rm /etc/nginx/sites-enabled/default
 #Enable Nginx configuration
 ln -s /etc/nginx/sites-available/notes-app /etc/nginx/sites-enabled/
 
+#Add execute permissions to the site
+chmod +x /home/ubuntu
+chmod +x /home/ubuntu/Notes-app-monolithic
+chmod +x /home/ubuntu/Notes-app-monolithic/notes-app-ui
+
+
 # Start the Nginx server
 nginx -g 'daemon off;'
