@@ -51,7 +51,7 @@ pipeline {
         stage('Push Docker Image to Docker hub registry') {
             steps {
                 sh '''
-                sh 'docker login -u monsotal -p monsonegot1
+                docker login -u monsotal -p monsonegot1
                 docker image push monsotal/notes-app-monolithic:0.0.1
                     '''
             }
