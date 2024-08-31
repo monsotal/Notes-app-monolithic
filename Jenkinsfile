@@ -30,7 +30,7 @@ pipeline {
             steps {
             git url: 'git@github.com:monsotal/Notes-app-monolithic.git', branch: 'main', credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
 
-                 }
+            }
         }
         stage('Create .env file with Postgres connection details') {
             steps {
@@ -39,7 +39,7 @@ pipeline {
                     cd ${WORKDIR}/notes-app-server
                     echo "DATABASE_URL=postgresql://postgres:uniquePassword@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
-                  }
+            }
         }
         stage('Build Docker Image') {
             steps {
@@ -48,9 +48,11 @@ pipeline {
                    '''
             }
         }
-        stage('Push Docker Image') {
+        stage('Push Docker Image to Docker hub registry') {
             steps {
-                echo 'Pushing the image to Docker hub repository..'
+                sh '''
+                docker image push monsotal/notes-app-monolithic:0.0.1
+                    '''
             }
         }
          stage('Deploy to Server') {
