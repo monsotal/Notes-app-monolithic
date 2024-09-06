@@ -11,7 +11,8 @@ pipeline {
         WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
         DATABASE_IP = "${params.DB_IP}"
         DATABASE_USERNAME = "${params.DB_USER}"
-        DATABASE_PASSWORD = "${params.DB_PASS}"
+        DARABASE_PASSWORD = "${params.DB_PASS}"
+        DOCKERHUB_CREDENTIALS = credentials('57b1926b-7963-4f0f-bdfb-ef3a6d5d22db')
     }
 
    
@@ -41,7 +42,7 @@ pipeline {
                 echo 'Create a .env file with PostgreSQL connection details:'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
-                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
+                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DARABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
             }
         }
@@ -54,12 +55,11 @@ pipeline {
         }
         stage('Push Docker Image to Docker hub registry') {
             steps {
-                withCredentials([usernamePassword(credentialsId: '57b1926b-7963-4f0f-bdfb-ef3a6d5d22db', usernameVariable: 'DOCKERHUB_USERNAME', passwordVariable: 'DOCKERHUB_PASSWORD')]) 
-                    sh '''
-                        echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USERNAME --password-stdin
-                        docker image push monsotal/notes-app-monolithic:0.0.1
+                sh '''
+                docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
+                docker image push monsotal/notes-app-monolithic:0.0.1
                     '''
-                }
+            }
         }
          stage('Deploy to Server') {
             steps {
