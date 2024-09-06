@@ -56,7 +56,7 @@ pipeline {
         stage('Push Docker Image to Docker hub registry') {
             steps {
                 sh '''
-                docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}
+                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
                 docker image push monsotal/notes-app-monolithic:0.0.1
                     '''
             }
@@ -71,6 +71,7 @@ pipeline {
                 sh '''
                 docker builder prune -f
                 docker container prune -f
+                docker image prune -f
                 '''
             }
         }
