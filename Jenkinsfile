@@ -12,6 +12,8 @@ pipeline {
         DATABASE_IP = "${params.DB_IP}"
         DATABASE_USERNAME = "${params.DB_USER}"
         DARABASE_PASSWORD = "${params.DB_PASS}"
+        DOCKERHUB_USERNAME = credentials('57b1926b-7963-4f0f-bdfb-ef3a6d5d22db').USR
+        DOCKERHUB_PASSWORD = credentials('57b1926b-7963-4f0f-bdfb-ef3a6d5d22db').PSW
     }
 
    
@@ -55,7 +57,7 @@ pipeline {
         stage('Push Docker Image to Docker hub registry') {
             steps {
                 sh '''
-                docker login -u monsotal -p monsonegot1
+                docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}
                 docker image push monsotal/notes-app-monolithic:0.0.1
                     '''
             }
