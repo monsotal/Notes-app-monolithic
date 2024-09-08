@@ -11,7 +11,7 @@ pipeline {
         WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
         DATABASE_IP = "${params.DB_IP}"
         DATABASE_USERNAME = "${params.DB_USER}"
-        DARABASE_PASSWORD = "${params.DB_PASS}"
+        DATABASE_PASSWORD = "${params.DB_PASS}"
         DOCKERHUB_CREDENTIALS = credentials('57b1926b-7963-4f0f-bdfb-ef3a6d5d22db')
     }
 
@@ -42,7 +42,7 @@ pipeline {
                 echo 'Create a .env file with PostgreSQL connection details:'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
-                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DARABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
+                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                     '''
             }
         }
