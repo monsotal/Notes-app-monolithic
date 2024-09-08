@@ -1,4 +1,4 @@
-FROM alpine:3.18
+FROM ubuntu:latest
 	
 	LABEL version="0.0.1"
 	LABEL maintainer="monsotal"
@@ -12,11 +12,13 @@ FROM alpine:3.18
     # Set up home directory
     WORKDIR ${HOMEDIR}
 	
-    # Install dependencies (Nginx, Node.js, npm, and PM2)
-    RUN apk update && \
-        apk upgrade && \
-        apk add --no-cache nginx nodejs npm bash && \
-        npm install -g pm2
+    #Install dependencies
+	RUN apt-get update && \
+     apt-get upgrade -y && \
+     apt-get install -y nginx && \
+     apt-get install -y nodejs && \
+     apt-get install -y npm && \
+     npm install -g pm2
 
     #Copying the project directory from Jenkins host to the container file system PROJECTDIR
     #and Copying the start script to WORKDIR
@@ -46,7 +48,7 @@ FROM alpine:3.18
 
 
     # Copy the custom Nginx configuration to the Nginx dir
-    COPY ${NGINX_CONFIGURATION} /etc/nginx/conf.d/
+    COPY ${NGINX_CONFIGURATION} /etc/nginx/sites-available/
 
 
     # Starts the node backend & Nginx by Executing start.sh script
