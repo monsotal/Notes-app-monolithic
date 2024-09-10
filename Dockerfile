@@ -4,8 +4,8 @@ FROM alpine:3.18
 	LABEL maintainer="monsotal"
 
 
-    ENV HOMEDIR="/home/ubuntu"
-    ENV PROJECTDIR="/home/ubuntu/Notes-app-monolithic"
+    ENV HOMEDIR="/home"
+    ENV PROJECTDIR="/home/Notes-app-monolithic"
     ENV NGINX_CONFIGURATION="resources/Nginx_configuration/notes-app"
 
 
