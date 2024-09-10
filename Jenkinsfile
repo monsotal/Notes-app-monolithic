@@ -4,7 +4,7 @@ pipeline {
     parameters{
         string(name:'DB_IP', description: 'Postgres public ip', defaultValue: '')
         string(name:'DB_USER', description: 'Postgres Username', defaultValue: 'postgres')
-        string(name:'DB_PASS', description: 'Postgres Password', defaultValue: '')
+        string(name:'DB_PASS', description: 'Postgres Password', defaultValue: 'uniquePassword')
     }
 
     environment {
