@@ -45,13 +45,17 @@ FROM alpine:3.18
 	EXPOSE 80
 
 
-    # Create the Nginx site directory (since in alpine it's not existing by default)
-    # & Copy the custom Nginx configuration to this directory
-    RUN mkdir /etc/nginx/sites-available && \
-        mkdir /etc/nginx/sites-enabled
+    #  Copy the custom Nginx site configuration to the alpine Nginx site configuration directory
+    #   Removes the default Nginx site if exists
+    # & Adds execute permissions to the relevant directories (if needed, although this might not be necessary for directories)
 
-    COPY ${NGINX_CONFIGURATION} /etc/nginx/sites-available/
 
+    COPY ${NGINX_CONFIGURATION} /etc/nginx/http.d/notes-app.conf
+    RUN rm -f /etc/nginx/http.d/default.conf
+
+    RUN chmod +x /home/
+    RUN chmod +x /home/Notes-app-monolithic
+    RUN chmod +x /home/Notes-app-monolithic/notes-app-ui
 
     # Starts the node backend & Nginx by Executing start.sh script
     CMD ["./start.sh"]
