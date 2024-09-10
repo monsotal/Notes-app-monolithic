@@ -45,8 +45,12 @@ FROM alpine:3.18
 	EXPOSE 80
 
 
-    # Copy the custom Nginx configuration to the Nginx dir
-    COPY ${NGINX_CONFIGURATION} /etc/nginx/conf.d/
+    # Create the Nginx site directory (since in alpine it's not existing by default)
+    # & Copy the custom Nginx configuration to this directory
+    RUN mkdir /etc/nginx/sites-available && \
+        mkdir /etc/nginx/sites-enabled
+
+    COPY ${NGINX_CONFIGURATION} /etc/nginx/sites-available/
 
 
     # Starts the node backend & Nginx by Executing start.sh script

@@ -4,11 +4,11 @@
 cd /home/ubuntu/Notes-app-monolithic/notes-app-server
 pm2 start npm -- start &
 
-# Remove the default Nginx site (this file doesn't exist in Alpine by default, but just in case)
-rm -f /etc/nginx/conf.d/default.conf
+# Remove the default Nginx site if exists(this file doesn't exist in Alpine by default, but just in case)
+rm -f /etc/nginx/sites-enabled/default
 
 # Enable custom Nginx configuration
-ln -s /etc/nginx/conf.d/notes-app /etc/nginx/conf.d/notes-app.conf
+ln -s /etc/nginx/sites-available/notes-app /etc/nginx/sites-enabled/
 
 # Add execute permissions to the relevant directories (if needed, although this might not be necessary for directories)
 chmod +x /home/ubuntu
