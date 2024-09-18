@@ -39,7 +39,7 @@ const MainApp = () => {
   useEffect(() => {
     const fetchNotes = async (page = 1) => {
       try {
-        const response = await fetch(`http://localhost:5000/api/notes?page=${page}&pageSize=10`);
+        const response = await fetch(`/api/notes?page=${page}&pageSize=10`);
         const data = await response.json();
         setNotes(data.notes);
         setCurrentPage(data.currentPage);
@@ -57,7 +57,7 @@ const MainApp = () => {
     event.preventDefault();
     try {
       const response = await fetch(
-        `http://localhost:5000/api/notes/`,
+        `/api/notes/`,
         {
           method: "POST",
           headers: {
@@ -98,7 +98,7 @@ const MainApp = () => {
     if (selectedNote) {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/notes/${selectedNote.id}`,
+          `/api/notes/${selectedNote.id}`,
           {
             method: "PUT",
             headers: {
@@ -140,7 +140,7 @@ const MainApp = () => {
 
     try {
       await fetch(
-        `http://localhost:5000/api/notes/${noteId}`,
+        `/api/notes/${noteId}`,
         {
           method: "DELETE",
         }
