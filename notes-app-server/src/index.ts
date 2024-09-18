@@ -10,8 +10,27 @@ app.use(express.json());
 app.use(cors());
 
 app.get("/api/notes", async (req, res) => {
-  const notes = await prisma.note.findMany();
-  res.json(notes);
+  const { page = 1, pageSize = 10 } = req.query; // Default page 1, page size 10
+
+  const pageInt = parseInt(page as string);
+  const pageSizeInt = parseInt(pageSize as string);
+
+  try {
+    const notes = await prisma.note.findMany({
+      skip: (pageInt - 1) * pageSizeInt,
+      take: pageSizeInt,
+    });
+
+    const totalNotes = await prisma.note.count(); // To get the total count of notes for calculating total pages
+
+    res.json({
+      notes,
+      currentPage: pageInt,
+      totalPages: Math.ceil(totalNotes / pageSizeInt),
+    });
+  } catch (error) {
+    res.status(500).send("Oops, something went wrong");
+  }
 });
 
 
