@@ -22,11 +22,17 @@ app.get("/api/notes", async (req, res) => {
     });
 
     const totalNotes = await prisma.note.count(); // To get the total count of notes for calculating total pages
+    const totalPages = Math.ceil(totalNotes / pageSizeInt);
 
-    res.json({
+    if(pageInt > totalPages) {
+      return res.status(404).json({message: "Page not found"}); // Return error if page exceeds total
+    }
+
+    
+     res.json({
       notes,
       currentPage: pageInt,
-      totalPages: Math.ceil(totalNotes / pageSizeInt),
+      totalPages,
     });
   } catch (error) {
     res.status(500).send("Oops, something went wrong");
