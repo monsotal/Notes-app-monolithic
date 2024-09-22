@@ -1,48 +1,50 @@
 import React, { useState } from "react";
-		import { useNavigate } from "react-router-dom";
-		import "./Login.css";
-		
-		const Login: React.FC = () => {
-		const [username, setUsername] = useState("");
-		const [password, setPassword] = useState("");
-		const navigate = useNavigate();
-		
-		const handleLogin = (event: React.FormEvent) => {
-			event.preventDefault();
-		
+import { useNavigate } from "react-router-dom";
+import "./Login.css";
+import logo from "./assets/logo.png";
+
+const Login: React.FC = () => {
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+	const navigate = useNavigate();
+
+	const handleLogin = (event: React.FormEvent) => {
+		event.preventDefault();
 
 
-			if (username === "admin" && password === "uniquePassword") {
+
+		if (username === "admin" && password === "uniquePassword") {
 			localStorage.setItem("isAuthenticated", "true");
 			console.log("User authenticated:", localStorage.getItem("isAuthenticated"));
 			navigate("/mainapp");
-			} else {
+		} else {
 			alert("Invalid username or password");
-			}
-		};
-		
-		return (
-			<div className="login-container">
+		}
+	};
+
+	return (
+		<div className="login-container">
+			<img src={logo} alt="Monso-notes Logo" className="login-logo" />
 			<h1>Login</h1>
 			<form onSubmit={handleLogin}>
 				<input
-				type="text"
-				value={username}
-				onChange={(event) => setUsername(event.target.value)}
-				placeholder="Username"
-				required
+					type="text"
+					value={username}
+					onChange={(event) => setUsername(event.target.value)}
+					placeholder="Username"
+					required
 				/>
 				<input
-				type="password"
-				value={password}
-				onChange={(event) => setPassword(event.target.value)}
-				placeholder="Password"
-				required
+					type="password"
+					value={password}
+					onChange={(event) => setPassword(event.target.value)}
+					placeholder="Password"
+					required
 				/>
 				<button type="submit">Login</button>
 			</form>
-			</div>
-		);
-		};
-		
+		</div>
+	);
+};
+
 export default Login;
