@@ -52,7 +52,7 @@ Plus, there's validation on both the UI and the backend
 - `cd notes-app-ui`
 - Install dependencies: `npm install`
 - run the server: `npm start`
-- In MainApp.tsx , replace API endpoints to absolute paths
+- In all front end React components (MainApp.tsx, Login.tsx..) , replace API endpoints to absolute paths
   This is because React App and Node.js server runs on different ports, therefore instead of using '/api/notes'you may use 'http://localhost:5000/api/notes' 
   (Unlike In production with Nginx, where the backend API is configured in the Nginx config, you can use relative paths like /api/notes directly in your code. Nginx handles the routing and API requests based on its configuration, so absolute URLs are not needed.
 

@@ -7,18 +7,38 @@ const Login: React.FC = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const navigate = useNavigate();
+	const [errorMessage, setErrorMessage] = useState("");
 
-	const handleLogin = (event: React.FormEvent) => {
+	const handleLogin = async (event: React.FormEvent) => {
 		event.preventDefault();
 
+		try {
+			const response = await fetch("/api/login", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ username, password }),
+			});
 
+			const data = await response.json();
 
-		if (username === "admin" && password === "uniquePassword") {
-			localStorage.setItem("isAuthenticated", "true");
-			console.log("User authenticated:", localStorage.getItem("isAuthenticated"));
-			navigate("/mainapp");
-		} else {
-			alert("Invalid username or password");
+			if (response.ok) {
+				// Store JWT in localStorage
+				localStorage.setItem("token", data.token);
+				localStorage.setItem("isAuthenticated", "true");
+
+				// Navigate to the main app
+				navigate("/mainapp");
+			}
+			else {
+				// Show error message if login fails
+				setErrorMessage(data.message || "Invalid username or password");
+			}
+		}
+		catch (error) {
+			console.error("Error during login:", error);
+			setErrorMessage("Something went wrong. Please try again.");
 		}
 	};
 
@@ -43,8 +63,8 @@ const Login: React.FC = () => {
 				/>
 				<button type="submit">Login</button>
 			</form>
+			{errorMessage && <p className="error">{errorMessage}</p>} {/* Display error message */}
 		</div>
 	);
-};
-
+}
 export default Login;

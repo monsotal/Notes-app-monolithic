@@ -12,12 +12,15 @@ const MainApp = () => {
     content: string;
   }
 
+  const [token, setToken] = useState<string | null>(null); // Store the token in state
   const [notes, setNotes] = useState<Note[]>([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [currentPage, setCurrentPage] = useState(1); // Add current page state
   const [totalPages, setTotalPages] = useState(1); // Add total pages state
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState('Good day');
@@ -37,9 +40,29 @@ const MainApp = () => {
 
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (!storedToken) {
+      setErrorMessage("Authentication token is missing.");
+    } else {
+      setToken(storedToken); // Save the token in state
+    }
+  }, []);
+
+
+  //Fetching all the notes
+  useEffect(() => {
     const fetchNotes = async (page = 1) => {
+      if (!token) {
+        return; // Exit if there's no token
+      }
+
       try {
-        const response = await fetch(`/api/notes?page=${page}&pageSize=10`);
+        const response = await fetch(`/api/notes?page=${page}&pageSize=10`, {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+          },
+        });
         const data = await response.json();
         setNotes(data.notes);
         setCurrentPage(data.currentPage);
@@ -50,7 +73,7 @@ const MainApp = () => {
     };
 
     fetchNotes(currentPage);  // Fetch notes based on the current page
-  }, [currentPage]);          // Add currentPage as a dependency
+  }, [currentPage, token]);          // Add currentPage as a dependency
 
 
   const handleAddNote = async (event: React.FormEvent) => {
@@ -62,6 +85,7 @@ const MainApp = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`,
           },
           body: JSON.stringify({
             title,
@@ -103,6 +127,7 @@ const MainApp = () => {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
             },
             body: JSON.stringify({
               title,
@@ -138,11 +163,19 @@ const MainApp = () => {
   const deleteNote = async (event: React.MouseEvent, noteId: number) => {
     event.stopPropagation();
 
+    if (!token) {
+      console.error("No token found. Please log in.");
+      return;
+    }
+
     try {
       await fetch(
         `/api/notes/${noteId}`,
         {
           method: "DELETE",
+          headers:{
+            "Authorization": `Bearer ${token}`,
+          }
         }
       );
 
