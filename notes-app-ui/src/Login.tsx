@@ -9,11 +9,15 @@ const Login: React.FC = () => {
 	const navigate = useNavigate();
 	const [errorMessage, setErrorMessage] = useState("");
 
+	const API_BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
+
+
+
 	const handleLogin = async (event: React.FormEvent) => {
 		event.preventDefault();
 
 		try {
-			const response = await fetch("/api/login", {
+			const response = await fetch(`${API_BASE_URL}/api/login`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",

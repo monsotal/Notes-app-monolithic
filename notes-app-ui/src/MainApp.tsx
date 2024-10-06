@@ -21,6 +21,8 @@ const MainApp = () => {
   const [totalPages, setTotalPages] = useState(1); // Add total pages state
   const [errorMessage, setErrorMessage] = useState("");
 
+  const API_BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
+
 
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState('Good day');
@@ -57,7 +59,7 @@ const MainApp = () => {
       }
 
       try {
-        const response = await fetch(`/api/notes?page=${page}&pageSize=10`, {
+        const response = await fetch(`${API_BASE_URL}/api/notes?page=${page}&pageSize=10`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,
@@ -73,14 +75,13 @@ const MainApp = () => {
     };
 
     fetchNotes(currentPage);  // Fetch notes based on the current page
-  }, [currentPage, token]);          // Add currentPage as a dependency
+  }, [currentPage, token, API_BASE_URL]);          // Add currentPage as a dependency
 
 
   const handleAddNote = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await fetch(
-        `/api/notes/`,
+      const response = await fetch(`${API_BASE_URL}/api/notes/`,
         {
           method: "POST",
           headers: {
@@ -121,8 +122,7 @@ const MainApp = () => {
     event.preventDefault();
     if (selectedNote) {
       try {
-        const response = await fetch(
-          `/api/notes/${selectedNote.id}`,
+        const response = await fetch(`${API_BASE_URL}/api/notes/${selectedNote.id}`,
           {
             method: "PUT",
             headers: {
@@ -169,14 +169,12 @@ const MainApp = () => {
     }
 
     try {
-      await fetch(
-        `/api/notes/${noteId}`,
-        {
-          method: "DELETE",
-          headers:{
-            "Authorization": `Bearer ${token}`,
-          }
+      await fetch(`${API_BASE_URL}/api/notes/${noteId}`, {
+        method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
         }
+      }
       );
 
       const updatedNotes = notes.filter((note) => note.id !== noteId);
