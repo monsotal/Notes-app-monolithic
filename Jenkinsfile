@@ -13,6 +13,7 @@ pipeline {
         DATABASE_USERNAME = "${params.DB_USER}"
         DATABASE_PASSWORD = "${params.DB_PASS}"
         DOCKERHUB_CREDENTIALS = credentials('57b1926b-7963-4f0f-bdfb-ef3a6d5d22db')
+        JWT_SECRET_KEY = credentials('1adb0619-e011-4df4-b8ce-6e125fc9c4f0')
     }
 
    
@@ -37,12 +38,13 @@ pipeline {
 
             }
         }
-        stage('Create .env file with Postgres connection details') {
+        stage('Create .env file with Postgres connection details & jwt token secret key') {
             steps {
                 echo 'Create a .env file with PostgreSQL connection details:'
                 sh '''
                     cd ${WORKDIR}/notes-app-server
-                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
+                    echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" >> .env
+                    echo "JWT_SECRET=${JWT_SECRET_KEY}" >> .env
                     '''
             }
         }

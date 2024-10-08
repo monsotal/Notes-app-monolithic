@@ -4,14 +4,20 @@ import { Request, Response, NextFunction } from 'express';
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt, { JwtPayload } from "jsonwebtoken";
+import dotenv from 'dotenv';
 
 
 const app = express();
 const prisma = new PrismaClient();
-const jwtSecret = "temp_jwt_secret"; // TO DO: Store this in a secure place like environment variables
+const JWTSECRET = process.env.JWT_SECRET;
 
 app.use(express.json());
 app.use(cors());
+dotenv.config();
+
+if (!JWTSECRET) {
+  throw new Error("JWTSECRET is not defined in environment variables");
+}
 
 
 
@@ -56,7 +62,7 @@ app.post("/api/login", async (req, res) => {
     }
 
     //Generates a JWT token and sends it back to the client
-    const token = jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: "1h" });
+    const token = jwt.sign({ userId: user.id }, JWTSECRET, { expiresIn: "1h" });
     res.json({ token });
   } catch (error) {
     res.status(500).json({ message: "Error logging in"});
@@ -74,7 +80,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     return res.status(403).json({ message: 'A token is required for authentication' });
   }
 
-  jwt.verify(token, jwtSecret, (err) => {
+  jwt.verify(token, JWTSECRET, (err) => {
     if (err) {
       return res.status(401).json({ message: 'Invalid Token' });
     }
