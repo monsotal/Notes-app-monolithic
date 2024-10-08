@@ -26,12 +26,13 @@ Plus, there's validation on both the UI and the backend
 
 ### Prerequisites
 - Node.js, npm, 
-- PostgreSQL server
+- PostgreSQL server with DB named "notes_db"
 
 ### Environment Variables
 - Create a `.env` file in the `notes-app-server` directory
 - Add necessary variables 
      `DATABASE_URL=postgresql://<user>:<password>@<ip>:5432/notes_db?schema=public`
+     `JWT_SECRET=<secret_key>`
 
 ### Database Setup
 - Ensure PostgreSQL is installed running and available
