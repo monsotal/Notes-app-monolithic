@@ -19,7 +19,7 @@ const MainApp = () => {
   const [selectedNote, setSelectedNote] = useState<Note | null>(null);
   const [currentPage, setCurrentPage] = useState(1); // Add current page state
   const [totalPages, setTotalPages] = useState(1); // Add total pages state
-  const [errorMessage, setErrorMessage] = useState("");
+
 
   const API_BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
 
@@ -44,7 +44,7 @@ const MainApp = () => {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     if (!storedToken) {
-      setErrorMessage("Authentication token is missing.");
+      console.error("Authentication token is missing");
     } else {
       setToken(storedToken); // Save the token in state
     }
