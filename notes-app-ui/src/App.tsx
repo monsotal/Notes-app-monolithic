@@ -4,6 +4,7 @@ import MainApp from "./MainApp";
 import Login from "./Login";
 import Stocks from "./Stocks";
 import ProtectedRoute from "./PrivateRoute";
+import SignUp from "./SignUp";
 
 const App: React.FC = () => {
 return (
@@ -11,6 +12,7 @@ return (
     <Route path="*" element={<Navigate to="/" />} />
     <Route path="/" element={<Navigate to="/login" />} />
     <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<SignUp />} />
 
     <Route path="/mainapp" element={
           <ProtectedRoute>

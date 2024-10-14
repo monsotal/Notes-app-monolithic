@@ -68,6 +68,7 @@ const Login: React.FC = () => {
 				<button type="submit">Login</button>
 			</form>
 			{errorMessage && <p className="error">{errorMessage}</p>} {/* Display error message */}
+			<p> Don't have an account?<a href="/signup">Sign Up</a></p>
 		</div>
 	);
 }
