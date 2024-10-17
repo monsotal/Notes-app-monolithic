@@ -29,24 +29,21 @@ Plus, there's validation on both the UI and the backend
 - PostgreSQL server with DB named "notes_db"
 
 ### Environment Variables
-- Create a `.env` file in the `notes-app-server` directory
-- Add necessary variables 
-     `DATABASE_URL=postgresql://<user>:<password>@<ip>:5432/notes_db?schema=public`
-     `JWT_SECRET=<secret_key>`
-
-### Database Setup
-- Ensure PostgreSQL is installed running and available
-- Synchronize your Prisma schema with the database schema:
-
-`cd notes-app-server`
-
-`npx prisma db push`
-
+- Create `.env` file in `notes-app-server` dir and add necessary environment variables  
+`DATABASE_URL=postgresql://<user>:<password>@<ip>:5432/notes_db?schema=public`  
+`JWT_SECRET=<secret_key>`
 
 ### Run the backend server 
 - `cd notes-app-server`
 - Install dependencies: `npm install`
 - run the server: `npm start`
+
+### Database Setup
+- Ensure PostgreSQL is installed running and available
+- Synchronize your Prisma schema with the database schema:
+
+`cd notes-app-server`  
+`npx prisma db push`
 
 ### start the front-end development server:
 
