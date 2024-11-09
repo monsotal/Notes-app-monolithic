@@ -62,3 +62,7 @@ spec:
         volumeMounts:
         - name: codebase-vol
           mountPath: "/home/Notes-app-monolithic"
+        
+        # Security context to run as root
+        securityContext:
+          runAsUser: 0
