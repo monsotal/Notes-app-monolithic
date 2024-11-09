@@ -27,9 +27,14 @@ FROM alpine:3.18
 
     #Install Frontend & Backend Dependencies
     RUN cd ${PROJECTDIR}/notes-app-ui && \
+        echo pwd && \
+        echo "Running npm install in notes-app-ui" && \
         npm install && \
+        ls -la node_modules && \
         cd ${PROJECTDIR}/notes-app-server && \
-        npm install
+        echo "Running npm install in notes-app-server" && \
+        npm install && \
+        ls -la node_modules
 
     #Pushing the database schema to the DB
     RUN cd ${PROJECTDIR}/notes-app-server && \
