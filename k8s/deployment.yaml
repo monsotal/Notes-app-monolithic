@@ -36,6 +36,7 @@ spec:
         volumeMounts:
         - name: codebase-vol
           mountPath: /home/Notes-app-monolithic
+          readOnly: false
         - name: ssh-key
           mountPath: /ssh-key
           readOnly: true
