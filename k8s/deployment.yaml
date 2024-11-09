@@ -30,12 +30,12 @@ spec:
             cp /ssh-key/ssh-privatekey ~/.ssh/id_rsa && \
             chmod 600 ~/.ssh/id_rsa && \
             ssh-keyscan -H github.com >> ~/.ssh/known_hosts && \
-            rm -rf /home/Notes-app-monolithic/* && \
-            git clone git@github.com:monsotal/Notes-app-monolithic.git /home/Notes-app-monolithic && \
-            ls -la /home/Notes-app-monolithic
+            rm -rf /data/* && \
+            git clone git@github.com:monsotal/Notes-app-monolithic.git /data && \
+            ls -la /data
         volumeMounts:
         - name: codebase-vol
-          mountPath: /home/Notes-app-monolithic
+          mountPath: /data
           readOnly: false
         - name: ssh-key
           mountPath: /ssh-key
@@ -61,7 +61,7 @@ spec:
               key: JWT_SECRET
         volumeMounts:
         - name: codebase-vol
-          mountPath: "/home/Notes-app-monolithic"
+          mountPath: "/data"
         
         # Security context to run as root
         securityContext:
