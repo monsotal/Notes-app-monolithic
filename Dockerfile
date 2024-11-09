@@ -15,24 +15,20 @@ FROM alpine:3.18
     # Install dependencies (Nginx, Node.js, npm, and PM2)
     RUN apk update && \
         apk upgrade && \
-        apk add --no-cache nginx nodejs npm bash && \
+        apk add --no-cache nginx nodejs npm bash curl&& \
         npm install -g pm2
 
-    #Copying the project directory from Jenkins host to the container file system PROJECTDIR
-    #and Copying the start script to WORKDIR
 
-    COPY . ${PROJECTDIR}
+    #Copying the start script to $HOMEDIR
+
     COPY start.sh ${HOMEDIR}
 
 
     #Install Frontend & Backend Dependencies
     RUN cd /home/Notes-app-monolithic/notes-app-ui && \
-        echo "Running npm install in notes-app-ui" && \
-        npm install > npminstall.log 2>&1 && \
-        cd ${PROJECTDIR}/notes-app-server && \
-        echo "Running npm install in notes-app-server" && \
         npm install && \
-        ls -la node_modules
+        cd ${PROJECTDIR}/notes-app-server && \
+        npm install
 
     #Pushing the database schema to the DB
     RUN cd ${PROJECTDIR}/notes-app-server && \
