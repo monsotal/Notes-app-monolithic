@@ -26,7 +26,8 @@ FROM alpine:3.18
 
 
     #Install Frontend & Backend Dependencies
-    RUN cd /home/Notes-app-monolithic/notes-app-ui && \
+    RUN cp /data/* /home/Notes-app-monolithic/ && \
+        cd /home/Notes-app-monolithic/notes-app-ui && \
         echo "Running npm install in notes-app-ui" && \
         npm install > npminstall.log 2>&1 && \
         cd ${PROJECTDIR}/notes-app-server && \
