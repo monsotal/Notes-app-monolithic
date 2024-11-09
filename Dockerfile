@@ -27,10 +27,9 @@ FROM alpine:3.18
 
     #Install Frontend & Backend Dependencies
     RUN cd ${PROJECTDIR}/notes-app-ui && \
-        echo pwd && \
+        pwd && \
         echo "Running npm install in notes-app-ui" && \
-        npm install && \
-        ls -la node_modules && \
+        npm install > npminstall.log 2>&1 && \
         cd ${PROJECTDIR}/notes-app-server && \
         echo "Running npm install in notes-app-server" && \
         npm install && \
