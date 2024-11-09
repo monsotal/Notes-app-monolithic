@@ -62,7 +62,13 @@ spec:
         volumeMounts:
         - name: codebase-vol
           mountPath: "/data"
-        
+        command:
+          - /bin/sh
+          - "-c"
+          - |
+            cp -R /data/* /home/Notes-app-monolithic && \
+            echo "Code copied to ${PROJECTDIR}" && \
+            ./start.sh
         # Security context to run as root
         securityContext:
           runAsUser: 0
