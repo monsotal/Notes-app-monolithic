@@ -20,7 +20,7 @@ FROM alpine:3.18
 
 
     #Copying the start script to $HOMEDIR
-
+    COPY . ${PROJECTDIR}
     COPY start.sh ${HOMEDIR}
 
 

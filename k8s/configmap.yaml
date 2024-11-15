@@ -1,6 +1,6 @@
 apiVersion: v1
 data:
-  DATABASE_URL: postgresql://postgres:uniquePassword@35.159.106.76:5432/notes_db?schema=public
+  DATABASE_URL: postgresql://postgres:uniquePassword@3.70.131.204:5432/notes_db?schema=public
   JWT_SECRET: pqpTxMVHqoE8OS
 kind: ConfigMap
 metadata:
