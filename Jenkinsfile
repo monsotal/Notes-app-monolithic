@@ -43,11 +43,9 @@ pipeline {
             steps {
                 sh """
                 cd ${WORKDIR}/notes-app-server/
-                cat > .env <<EOF
-                DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public
-                JWT_SECRET=pqpTxMVHqoE8OS
-                EOF
-                """
+                echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
+                echo "JWT_SECRET=pqpTxMVHqoE8OS" >> .env
+                   """
             }
         }
         stage('Build Docker Image') {
