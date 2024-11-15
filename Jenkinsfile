@@ -39,6 +39,17 @@ pipeline {
                 credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
             }
         }
+        stage('Create .env file') {
+            steps {
+                sh """
+                cd ${WORKDIR}/notes-app-server/
+                cat > .env <<EOF
+                DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public
+                JWT_SECRET=pqpTxMVHqoE8OS
+                EOF
+                """
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 sh """
