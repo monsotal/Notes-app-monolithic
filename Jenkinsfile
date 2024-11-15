@@ -34,46 +34,46 @@ pipeline {
         }
         stage('Checkout Code') {
             steps {
-                git url: 'git@github.com:monsotal/Notes-app-monolithic.git', branch: 'main', credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
+                git url: 'git@github.com:monsotal/Notes-app-monolithic.git',
+                branch: 'main',
+                credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh '''
+                sh """
                 docker build -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
-                   '''
+                   """
             }
         }
         stage('Push Docker Image to Docker hub registry') {
             steps {
-                sh '''
+                sh """
                 docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                 docker image push monsotal/notes-app-monolithic:0.0.1
-                    '''
+                    """
             }
         }
         stage('Deploy to Kubernetes cluster') {
             steps {
                 withEnv(['KUBECONFIG']) {
-                    script {
                         sh '''
                         kubectl apply -f /k8s/deployment.yaml
                         kubectl apply -f /k8s/service.yaml
                         kubectl apply -f /k8s/configmap.yaml
                         '''
-                    }
                 }
             }
         }
         stage('Clean Up') {
             steps {
                 script {
-                    sh '''
+                    sh """
                     docker builder prune -f
                     docker container prune -f
                     docker image prune -f
                     rm -rf ${WORKDIR}/*
-                    '''
+                    """
                 }
             }
         }
