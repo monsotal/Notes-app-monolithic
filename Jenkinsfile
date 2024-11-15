@@ -72,7 +72,6 @@ pipeline {
                     export KUBECONFIG=${KUBECONFIG}
                     kubectl apply -f ${WORKDIR}/k8s/deployment.yaml
                     kubectl apply -f ${WORKDIR}/k8s/service.yaml
-                    kubectl apply -f ${WORKDIR}/k8s/configmap.yaml
                     """
                 }
             }

@@ -23,13 +23,3 @@ spec:
         env:
         - name: PROJECTDIR
           value: "/home/Notes-app-monolithic"
-        - name: DATABASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: notes-app-config
-              key: DATABASE_URL
-        - name: JWT_SECRET
-          valueFrom:
-            configMapKeyRef:
-              name: notes-app-config
-              key: JWT_SECRET
