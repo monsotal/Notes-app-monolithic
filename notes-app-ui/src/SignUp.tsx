@@ -7,7 +7,7 @@ const SignUp: React.FC = () => {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
-    const API_BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : 'http://localhost:30080';
+    const API_BASE_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:5000' : '';
   
     const handleSignUp = async (event: React.FormEvent) => {
       event.preventDefault();
