@@ -61,7 +61,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """
-                docker build --no-cache -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
+                docker build --no-cache -t monsotal/notes-app-monolithic:0.0.2 ${WORKDIR}
                 """
             }
         }
@@ -70,7 +70,7 @@ pipeline {
             steps {
                 sh """
                 docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
-                docker image push monsotal/notes-app-monolithic:0.0.1
+                docker image push monsotal/notes-app-monolithic:0.0.2
                 """
             }
         }
