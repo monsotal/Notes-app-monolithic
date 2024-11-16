@@ -24,8 +24,8 @@ FROM alpine:3.18
     #Copying the start script to container's $HOMEDIR
     COPY start.sh ${HOMEDIR}
 
-    # Verifying that the copied codebase is up to date
-    RUN ls -la ${PROJECTDIR}
+    # Check .env file content
+    RUN cat ${PROJECTDIR}/notes-app-server/.env
 
 
 
@@ -35,14 +35,23 @@ FROM alpine:3.18
         cd ${PROJECTDIR}/notes-app-server && \
         npm install
 
+    # Check .env file content
+    RUN cat ${PROJECTDIR}/notes-app-server/.env
+
     #Pushing the database schema to the DB
     RUN cd ${PROJECTDIR}/notes-app-server && \
         npx prisma db push
+
+    # Check .env file content
+    RUN cat ${PROJECTDIR}/notes-app-server/.env
 
     #Build Frontend codebase
     RUN cd ${PROJECTDIR}/notes-app-ui && \
         npm run build --verbose
 
+    # Check .env file content
+    RUN cat ${PROJECTDIR}/notes-app-server/.env
+    
     # Give execute permission to start script
     RUN chmod +x ${HOMEDIR}/start.sh
 
