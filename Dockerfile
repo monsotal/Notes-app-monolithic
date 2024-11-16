@@ -21,6 +21,7 @@ FROM alpine:3.18
 
     #Copying the start script to $HOMEDIR
     COPY . ${PROJECTDIR}
+    COPY notes-app-server/.env ${PROJECTDIR}/notes-app-server/.env
     COPY start.sh ${HOMEDIR}
 
 
