@@ -17,6 +17,7 @@ spec:
       - name: regcred
       containers:
       - name: notes-app-container
-        image: monsotal/notes-app-monolithic:0.0.1
+        image: monsotal/notes-app-monolithic:0.0.2
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
