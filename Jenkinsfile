@@ -38,6 +38,14 @@ pipeline {
                 branch: 'main',
                 credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
             }
+        stage('Verify Build Context') {
+            steps {
+                sh """
+                echo "()()()()()()()Verifying the right and updated codebse got pulled()()()()()()()"
+                ls -la ${WORKDIR}
+                   """
+                 }
+            }
         }
         stage('Create .env file') {
             steps {

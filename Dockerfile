@@ -24,8 +24,10 @@ FROM alpine:3.18
     #Copying the start script to container's $HOMEDIR
     COPY start.sh ${HOMEDIR}
 
-    #Force Cache Bust for Critical Files , e.g :to prevent cached layer with an older .env
-    COPY ./notes-app-server/.env ${PROJECTDIR}/notes-app-server/.env
+    # Verifying that the copied codebase is up to date
+    RUN ls -la /home/Notes-app-monolithic
+
+
 
     #Install Frontend & Backend Dependencies
     RUN cd /home/Notes-app-monolithic/notes-app-ui && \
