@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     parameters {
-        string(name:'DB_IP', description: 'Postgres public ip', defaultValue: '')
-        string(name:'DB_USER', description: 'Postgres Username', defaultValue: 'postgres')
-        string(name:'DB_PASS', description: 'Postgres Password', defaultValue: 'uniquePassword')
+        string(name: 'DB_IP', description: 'Postgres public IP', defaultValue: '')
+        string(name: 'DB_USER', description: 'Postgres Username', defaultValue: 'postgres')
+        string(name: 'DB_PASS', description: 'Postgres Password', defaultValue: 'uniquePassword')
     }
 
     environment {
@@ -22,12 +22,12 @@ pipeline {
     }
 
     triggers {
-        //check for code changes every day at 20:00
+        // Check for code changes every day at 20:00
         cron('0 20 * * *')
     }
 
     stages {
-        stage('Clean workspace') {
+        stage('Clean Workspace') {
             steps {
                 cleanWs()
             }
@@ -35,41 +35,47 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git url: 'git@github.com:monsotal/Notes-app-monolithic.git',
-                branch: 'main',
-                credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
+                    branch: 'main',
+                    credentialsId: 'bc43102f-a155-4c35-9626-1b0d2efd5080'
             }
-        stage('Verify pulled code is up to date') {
+        }
+
+        stage('Verify Pulled Code is Up to Date') {
             steps {
                 sh """
                 ls -la ${WORKDIR}/*
-                    """
+                """
             }
         }
-        stage('Create .env file') {
+
+        stage('Create .env File') {
             steps {
                 sh """
                 cd ${WORKDIR}/notes-app-server/
                 echo "DATABASE_URL=postgresql://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE_IP}:5432/notes_db?schema=public" > .env
                 echo "JWT_SECRET=pqpTxMVHqoE8OS" >> .env
-                   """
+                """
             }
         }
+
         stage('Build Docker Image') {
             steps {
                 sh """
                 docker build --no-cache -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
-                   """
+                """
             }
         }
-        stage('Push Docker Image to Docker hub registry') {
+
+        stage('Push Docker Image to Docker Hub Registry') {
             steps {
                 sh """
                 docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                 docker image push monsotal/notes-app-monolithic:0.0.1
-                    """
+                """
             }
         }
-        stage('Deploy to Kubernetes cluster') {
+
+        stage('Deploy to Kubernetes Cluster') {
             steps {
                 withCredentials([file(credentialsId: 'k8s-cluster-kubeconfig', variable: 'KUBECONFIG')]) {
                     sh """
@@ -80,6 +86,7 @@ pipeline {
                 }
             }
         }
+
         stage('Clean Up') {
             steps {
                 script {
@@ -92,6 +99,7 @@ pipeline {
             }
         }
     }
+
     post {
         success {
             echo 'Pipeline executed successfully!'
