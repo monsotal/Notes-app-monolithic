@@ -18,12 +18,14 @@ FROM alpine:3.18
         apk add --no-cache nginx nodejs npm bash curl&& \
         npm install -g pm2
 
-
-    #Copying the start script to $HOMEDIR
+    #Copying entire codebase to container's $PROJECTDIR
     COPY . ${PROJECTDIR}
-    COPY notes-app-server/.env ${PROJECTDIR}/notes-app-server/.env
+
+    #Copying the start script to container's $HOMEDIR
     COPY start.sh ${HOMEDIR}
 
+    #Force Cache Bust for Critical Files , e.g :to prevent cached layer with an older .env
+    COPY ./notes-app-server/.env ${PROJECTDIR}/notes-app-server/.env
 
     #Install Frontend & Backend Dependencies
     RUN cd /home/Notes-app-monolithic/notes-app-ui && \
