@@ -51,7 +51,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh """
-                docker build -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
+                docker build --no-cache -t monsotal/notes-app-monolithic:0.0.1 ${WORKDIR}
                    """
             }
         }
