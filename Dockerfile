@@ -25,7 +25,7 @@ FROM alpine:3.18
     COPY start.sh ${HOMEDIR}
 
     # Verifying that the copied codebase is up to date
-    RUN ls -la /home/Notes-app-monolithic
+    RUN ls -la ${PROJECTDIR}
 
 
 
