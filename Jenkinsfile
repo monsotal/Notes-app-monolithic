@@ -40,14 +40,6 @@ pipeline {
             }
         }
 
-        stage('Verify Pulled Code is Up to Date') {
-            steps {
-                sh """
-                ls -la ${WORKDIR}/*
-                """
-            }
-        }
-
         stage('Create .env File') {
             steps {
                 sh """
