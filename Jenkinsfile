@@ -8,6 +8,8 @@ pipeline {
     }
 
     environment {
+        IMAGE_NAME = 'monsotal/notes-app-monolithic'
+        IMAGE_TAG = "${env.BUILD_NUMBER}" // Use Jenkins build number for the tag
         WORKDIR = '/var/lib/jenkins/workspace/Notes-app-monolithic-pipeline'
         DATABASE_IP = "${params.DB_IP}"
         DATABASE_USERNAME = "${params.DB_USER}"
@@ -63,6 +65,16 @@ pipeline {
                 sh """
                 docker login -u $DOCKERHUB_CREDENTIALS_USR -p $DOCKERHUB_CREDENTIALS_PSW
                 docker image push monsotal/notes-app-monolithic:0.0.2
+                """
+            }
+        }
+
+        stage('Prepare Deployment Manifest') {
+            steps {
+                //creates a copy of the template (deployment.yaml) and replaces <TAG> with the actual image tag using sed
+                sh """
+                cp ${WORKDIR}/k8s/deployment-template.yaml ${WORKDIR}/k8s/deployment.yaml
+                sed -i "s|<TAG>|${IMAGE_TAG}|g" ${WORKDIR}/k8s/deployment.yaml
                 """
             }
         }
