@@ -106,10 +106,10 @@ pipeline {
 
     post {
         success {
-            echo 'Pipeline executed successfully!'
+            echo "Deployment succeeded with image tag: ${IMAGE_TAG}"
         }
         failure {
-            echo 'Pipeline execution failed!'
+            echo 'Deployment failed!'
         }
     }
 }
