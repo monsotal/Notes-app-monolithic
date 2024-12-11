@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     parameters {
-        string(name: 'DB_IP', description: 'Postgres public IP', defaultValue: '')
+        string(name: 'DB_IP', description: 'Postgres public IP', defaultValue: '172.31.19.168')
         string(name: 'DB_USER', description: 'Postgres Username', defaultValue: 'postgres')
         string(name: 'DB_PASS', description: 'Postgres Password', defaultValue: 'uniquePassword')
     }
