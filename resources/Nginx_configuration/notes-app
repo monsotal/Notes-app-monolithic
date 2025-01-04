@@ -1,6 +1,12 @@
 server {
-    listen 80 default_server;
+    listen 443 ssl;
     server_name your_domain.com;
+
+    ssl_certificate /etc/nginx/ssl/tls.crt;
+    ssl_certificate_key /etc/nginx/ssl/tls.key;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
 
     root /home/Notes-app-monolithic/notes-app-ui/build;
     index index.html;

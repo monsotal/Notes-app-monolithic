@@ -7,7 +7,8 @@ spec:
     app: notes-app
   type: NodePort
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-    nodePort: 30080
+  - name: https
+    port: 443          # Expose HTTPS traffic
+    targetPort: 443    # Map to Nginx's HTTPS listener
+    nodePort: 30443    # NodePort for HTTPS
+    protocol: TCP

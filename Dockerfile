@@ -15,7 +15,7 @@ FROM alpine:3.18
     # Install dependencies (Nginx, Node.js, npm, and PM2)
     RUN apk update && \
         apk upgrade && \
-        apk add --no-cache nginx nodejs npm bash curl&& \
+        apk add --no-cache nginx openssl nodejs npm bash curl&& \
         npm install -g pm2
 
     #Copying entire codebase to container's $PROJECTDIR
@@ -44,7 +44,8 @@ FROM alpine:3.18
     # Give execute permission to start script
     RUN chmod +x ${HOMEDIR}/start.sh
 
-	EXPOSE 80
+    # Expose only port 443 for HTTPS
+	EXPOSE 443
 
 
     #  Copy the custom Nginx site configuration to the alpine Nginx site configuration directory

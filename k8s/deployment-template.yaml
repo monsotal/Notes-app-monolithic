@@ -17,12 +17,19 @@ spec:
       labels:
         app: notes-app
     spec:
-      volumes: []
+      volumes:
+      - name: ssl-certs
+        secret:
+          secretName: nginx-ssl-secret # Name of the TLS secret
       imagePullSecrets:
-      - name: regcred
+      - name: regcred    # Dockerhub credentials
       containers:
       - name: notes-app-container
         image: monsotal/notes-app-monolithic:<TAG> 
         imagePullPolicy: Always
         ports:
-        - containerPort: 80
+        - containerPort: 443
+        volumeMounts:
+        - name: ssl-certs
+          mountPath: /etc/nginx/ssl
+          readOnly: true
