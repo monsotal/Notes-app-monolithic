@@ -16,42 +16,15 @@ Plus, there's validation on both the UI and the backend
 - Database: PostgreSQL
 
 
-
-
-## How to prepare your local environment for debugging / development
-### Set up SSH for GitHub (if not already done)
-- Check for existing SSH keys , then place the keys in ~/.ssh dir
-- Test the SSH connection : `ssh -T git@github.com`
-- Clone the repo : `git clone git@github.com:monsotal/Notes-app-monolithic.git`
-
-### Prerequisites
-- Node.js, npm, 
-- PostgreSQL server with DB named "notes_db"
-
-### Environment Variables
-- Create `.env` file in `notes-app-server` dir and add necessary environment variables  
-`DATABASE_URL=postgresql://<user>:<password>@<ip>:5432/notes_db?schema=public`  
-`JWT_SECRET=<secret_key>`
-
-### Run the backend server 
-- `cd notes-app-server`
-- Install dependencies: `npm install`
-- run the server: `npm start`
-
-### Database Setup
-- Ensure PostgreSQL is installed running and available
-- Synchronize your Prisma schema with the database schema:
-
-`cd notes-app-server`  
-`npx prisma db push`
-
-### start the front-end development server:
-
-- `cd notes-app-ui`
-- Install dependencies: `npm install`
-- run the server: `npm start`
-
-
 ## Project Structure
 The application is structured with separate frontend (notes-app-ui) and backend (notes-app-server) directories,
  allowing for independent development and easy deployment...
+
+
+ ## Documentation
+For detailed instructions and further information, check out the following documents:
+- [Local Environment Setup](docs/local_env.md): Steps to prepare your local development environment.
+- [Pipeline Overview](docs/pipeline.md): Explanation of the CI/CD pipeline for this project.
+- [Docker Image Instructions](docs/docker_image.md): Overview of the Dockerfile and image-building process.
+- [Security Guidelines](docs/security_guidelines.md): Details on implemented security measures and recommendations for secure deployment.
+- [Kubernetes Deployment](docs/kubernetes_deployment.md): Steps to deploy the app on a Kubernetes cluster.
