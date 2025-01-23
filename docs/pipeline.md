@@ -22,4 +22,4 @@ The pipeline consists of the following key stages:
 *   The pipeline utilizes various Jenkins credentials to securely access sensitive information like database credentials, Docker Hub credentials, and the Kubernetes cluster configuration file.
 *   The pipeline outputs success and failure messages upon completion, including the deployed image tag in case of success.
 
-![picture alt](docs/images/deployment_pipeline.svg)
+![Pipeline Diagram](images/deployment_pipeline.svg)
