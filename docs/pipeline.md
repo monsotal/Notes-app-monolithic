@@ -20,6 +20,7 @@ The pipeline consists of the following key stages:
 
 *   The pipeline is triggered daily at 8:00 PM (cron job) to check for code changes and initiate a new run if any changes are detected.
 *   The pipeline utilizes various Jenkins credentials to securely access sensitive information like database credentials, Docker Hub credentials, and the Kubernetes cluster configuration file.
-*   The pipeline outputs success and failure messages upon completion, including the deployed image tag in case of success.
+*   The pipeline outputs success and failure messages upon completion, including the deployed image tag in case of success.  
 
+<br><br><br>
 ![Pipeline Diagram](images/deployment_pipeline.svg)
