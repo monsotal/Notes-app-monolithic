@@ -1,6 +1,6 @@
 # Docker Image Documentation
 
-This document (`docker_image.md`) provides a clear explanation of how this Docker image is built and how the application is started within the container. It outlines each build step, the installed dependencies, and the final startup process.
+This document provides a clear explanation of how this Docker image is built and how the application is started within the container. It outlines each build step, the installed dependencies, and the final startup process.
 
 ---
 
