@@ -26,5 +26,5 @@ For detailed instructions and further information, check out the following docum
 - [Local Environment Setup](docs/local_env.md): Steps to prepare your local development environment.
 - [Pipeline Overview](docs/pipeline.md): Explanation of the CI/CD pipeline for this project.
 - [Docker Image Instructions](docs/docker_image.md): Overview of the Dockerfile and image-building process.
-- [Security Guidelines](docs/security_guidelines.md): Details on implemented security measures and recommendations for secure deployment.
+- [Security Guidelines](docs/security_practices.md): Details on implemented security measures and recommendations for secure deployment.
 - [Kubernetes Deployment](docs/kubernetes_deployment.md): Steps to deploy the app on a Kubernetes cluster.
