@@ -6,3 +6,4 @@
 * Issue: Possible DDOS/other attacks- explore how to monitor/ prevent ?
 * Issue: Prject is not licensed. Should license be added ? If yes, Explore licensing options , compare and decide.
 * Scalability roadmap: currently deployment is set to a single replica. explore future scaling up options
+* Continuous Integration missing: Unit tests are not being executed in the pipeline.
