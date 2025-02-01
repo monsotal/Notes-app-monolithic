@@ -28,3 +28,4 @@ For detailed instructions and further information, check out the following docum
 - [Docker Image Instructions](docs/docker_image.md): Overview of the Dockerfile and image-building process.
 - [Security practices](docs/security_practices.md): Details on implemented security practices been took through out the development proccess.
 - [Kubernetes Deployment](docs/kubernetes_deployment.md): Steps to deploy the app on a Kubernetes cluster.
+- [ToDo list](docs/TODO.md) : Outlines current issues and future improvements
