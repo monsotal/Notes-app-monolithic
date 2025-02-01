@@ -1,6 +1,7 @@
 # Kubernetes Deployment Practices
 
-This document outlines the practices used in the Kubernetes deployment manifests for the Notes App. These practices ensure a secure, modular, and scalable deployment while integrating seamlessly with CI/CD pipelines.
+This document outlines the practices used in the Kubernetes deployment manifests for the Notes App.
+These practices ensure a secure, modular, and scalable deployment while integrating seamlessly with CI/CD pipelines.
 
 ## 1. Service Manifest (`service.yaml`)
 - **Service Type**: 
@@ -37,13 +38,5 @@ This document outlines the practices used in the Kubernetes deployment manifests
 ## 4. Environment Variables and Secrets
 - Securely integrates sensitive data like database credentials and JWT secrets via Kubernetes secrets and ConfigMaps.
 
-## 5. Resource Modularity
-- Separation of concerns between the service (`service.yaml`) and deployment (`deployment-template.yaml`), allowing independent updates and management.
-
-## 6. Scalability Considerations
-- While currently set to a single replica, the deployment can easily scale by modifying the `replicas` field.
-
-## 7. Integration with CI/CD
+## 5. Integration with CI/CD
 - The Jenkins pipeline dynamically updates the deployment manifest using `sed` to replace placeholders like `<TAG>` with the specific build version before applying the manifests to the cluster.
-
-These practices ensure the Notes App is deployed efficiently, with flexibility for future enhancements and seamless integration.

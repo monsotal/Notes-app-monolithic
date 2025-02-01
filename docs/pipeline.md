@@ -12,7 +12,7 @@ The pipeline is implemented using Jenkins and uses Docker containers for packagi
 The pipeline consists of the following key stages:
 
 1.  **Clean Workspace:** This stage removes any existing content from the Jenkins workspace before starting the pipeline execution.
-2.  **Checkout Code:** The code for the Notes App Monolithic application is fetched from a Git repository ([invalid URL removed]) and stored in the workspace.
+2.  **Checkout Code:** The code for the Notes App Monolithic application is fetched from a Git repo(`git@github.com:monsotal/Notes-app-monolithic.git`) and stored in the workspace.
 3.  **Create .env File:** A `.env` file is created within the application code directory. This file contains sensitive configuration details like database connection strings and secret keys. The credentials for these values are managed by Jenkins and retrieved securely during this stage.
 4.  **Build Docker Image:** The Docker image for the Notes App Monolithic application is built using the Dockerfile present in the codebase. The image is tagged with the current Jenkins build number for versioning purposes.
 5.  **Push Docker Image to Docker Hub Registry:** The built Docker image is pushed to a Docker Hub repository using credentials stored securely within Jenkins.
@@ -24,4 +24,4 @@ The pipeline consists of the following key stages:
 
 *   The pipeline is triggered daily at 8:00 PM (cron job) to check for code changes and initiate a new run if any changes are detected.
 *   The pipeline utilizes various Jenkins credentials to securely access sensitive information like database credentials, Docker Hub credentials, and the Kubernetes cluster configuration file.
-*   The pipeline outputs success and failure messages upon completion, including the deployed image tag in case of success.  
+*   The pipeline outputs success and failure messages when complets, including the deployed image tag in case of success.  

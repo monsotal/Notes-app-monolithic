@@ -1,6 +1,6 @@
 # Security Practices
 
-Below is a concise overview of the primary security measures in the **Notes-app-monolithic** project, covering application-level, infrastructure, and deployment practices.
+Below is a concise overview of the primary security measures in the Notes App mini-project, covering application-level, infrastructure, and deployment practices.
 
 ---
 
@@ -52,4 +52,4 @@ Below is a concise overview of the primary security measures in the **Notes-app-
 - **Credentialed Login**:  
   - Jenkins authenticates with Docker Hub using stored credentials.
 - **Traceable Tags**:  
-  - Images tagged with Jenkins build numbers for streamlined rollbacks.
+  - Image versions are labeled with Jenkins build numbers for easy rollback management.
