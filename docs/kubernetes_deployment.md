@@ -1,5 +1,8 @@
 # Kubernetes Deployment Practices
 
+![Architecture diagram](images/app_architecture.svg)
+
+
 This document outlines the practices used in the Kubernetes deployment manifests for the Notes App.
 These practices ensure a secure, modular, and scalable deployment while integrating seamlessly with CI/CD pipelines.
 
