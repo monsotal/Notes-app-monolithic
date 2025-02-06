@@ -1,6 +1,7 @@
 ### ToDo list:
 
 * Issue: JWT secret (JWT_SECRET) is not encrypted.
+* Pipieline security: use token-based authentication instead of username/password when pushinh the image to DockerHub.
 * Issue: PostgresDB currently requires independent ec2 instance. consider deploy it as in local app db, or in independent container with postgres docker image.
 * Issue: The pipeline does not perform health checks after deployment.
 * Issue: Possible DDOS/other attacks- explore how to monitor/ prevent ?
